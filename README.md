@@ -10,12 +10,12 @@ It is developed on PHP version 5.4.
 Actually, we don’t need manual for this framework because its’ too simple.
 But it will support powerful things like SQL injection and clean URL, restFul Api etc along with MVC model.
 
-Anyway, this is how to use the framework.
+This is how to use the framework.
 
 It is divided into three parts, app(your application), config(configuration), core(framework).
-So, you application code will be placed in app folder.
+So, your all application code will be placed inside app folder.
 
-Let's start wiht this process of the development with this simpleMvc framework.
+Let's follow this steps to starting of the development with this simpleMvc framework.
 
 1. copy all files to you web server directory.
 2. modify rewrite mode(.htaccess) if you are using other web server other than Apache.
