@@ -1,0 +1,13 @@
+
+#footer {
+    padding:20px 0px;
+    text-align:center;
+    font-style:italic;
+    color:#999;
+    border-top:1px solid #ccc;
+    margin-top:24px;
+}
+
+.dropdown-menu > li > a:hover {
+   color: #20B2AA;
+}
