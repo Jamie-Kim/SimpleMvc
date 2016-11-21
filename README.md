@@ -5,6 +5,8 @@ The purpose of this framework is to build your project with MVC model.
 It’s simple and easy to understand.
 So, feel free to use it to your project.
 
+It is developed on PHP cersion 5.4.
+
 Actually, we don’t need manual for this framework because its’ too simple.
 But it will support powerful things like SQL injection and clean URL, restFul Api etc along with MVC model.
 
