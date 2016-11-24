@@ -15,7 +15,7 @@ This is how to use the framework.
 It is divided into three parts, app(your application), config(configuration), core(framework).
 So, your all application code will be placed inside app folder.
 
-Let's follow this steps for starting of the development with this simpleMvc framework.
+Let's follow these steps for starting of the development with this simpleMvc framework.
 
 1. copy all files to your web server directory.
 2. modify the rewrite mode(.htaccess) if you are using other web server other than Apache.
