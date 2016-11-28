@@ -24,7 +24,7 @@ Let's follow these steps for starting of the development with this simpleMvc fra
 5. create controller file in app/controller folder. File name should be same with the class name.
 6. create html template in app/views/default/templates and define the file path in app/views/view_paths.php
 7. start coding with the controller you created in step 5.
-8. add some necessary codes in app/app_code rater than modifing the core.
+8. add some necessary codes in app/app_code rather than modifing the core.
 9. update and fix the core if you need.
 10. use the updated core for your next project.
 
