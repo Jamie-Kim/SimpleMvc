@@ -23,12 +23,12 @@ class View
         $eval_header = null;
         $eval_footer = null;
         
+        //defaul settings to show html
+        $this->setDefault_eval($viewData);
+
         if($this->settings->debug_mode) {
             echo '<pre>' . var_export($viewData, true) . '</pre>';
         }
-
-        //defaul settings to show html
-        $this->setDefault_eval($viewData);
 
         //set data.
         $eval_forms = $this->file_get_contents_with_eval($file, $viewData);
@@ -82,8 +82,8 @@ class View
     {
         $docRoot = dirname($_SERVER['SCRIPT_FILENAME']);
         $relPath = str_replace($docRoot, '', $path);
-        $urlPath = $this->settings->base_url . $relPath . DS . $this->settings->theme;
-        
+        $urlPath = rtrim($this->settings->base_url, "/") . $relPath . DS . $this->settings->theme;
+
         return $urlPath;
     }
 }
