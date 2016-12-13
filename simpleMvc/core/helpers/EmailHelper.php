@@ -7,9 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace SimpleMvc;
+
 require_once (CORE_VENDORS . 'PHPMailer/PHPMailerAutoload.php');
 
-final class EmailHelper 
+class EmailHelper 
 {
     /**
      * Send email with SMTP.
@@ -18,8 +20,19 @@ final class EmailHelper
      * string $email_title : email title.
      * string $form_file : email html form file.
      * array $data : data to use in email form.
-     * array $smtpInfo : smtp info. :: ['Host'], ['Username'], ['Password'], ['Secure'], ['Port'], ['From'], ['FromName']
-     *
+     * array $smtpInfo : smtp info.
+     * e. g. 
+     * $smtpInfo = [
+        //custom log types
+        'Host' => 'smtp.simpleMvc.com',
+        'Username' => 'jamie@test.com,
+        'Password' => '123456aa',
+        'Secure' => 'tls',
+        'Port' => 587,
+        'From' => 'simplemvc@test.com',
+        'FromName' => 'SimpleMvc',
+       ];    
+
      * @return boolean
      */
     public static function sendEmail($email_to, $email_title, $form_file, $data, $smtpInfo)

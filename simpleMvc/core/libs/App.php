@@ -12,7 +12,7 @@ namespace SimpleMvc;
 /**
  * App Class
  */
-class App
+final class App
 {
     /**
      * global settings

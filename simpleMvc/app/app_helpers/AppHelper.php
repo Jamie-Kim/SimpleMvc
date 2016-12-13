@@ -1,5 +1,5 @@
 <?php
 
-Class AppHelper extends Helper
+Class AppHelper extends SimpleMvc\Helper
 {
 }

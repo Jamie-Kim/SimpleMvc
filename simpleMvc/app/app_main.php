@@ -2,18 +2,18 @@
 //get app core path
 require APP . DS . 'app_paths.php';
 
-//app view template pathes
-require VIEWS . DS . 'view_paths.php';
-
 //app helper
 require APP_HELPERS. DS . 'AppHelper.php';
 
 //app core modules
+require APP_CORE . DS . 'AppLogger.php';
 require APP_CORE . DS . 'AppApi.php';
 require APP_CORE . DS . 'AppModel.php';
 require APP_CORE . DS . 'AppView.php';
 require APP_CORE . DS . 'AppController.php';
 
+//app view template pathes
+require VIEWS . DS . 'view_paths.php';
 
 //set routing [routing url => array(controller file path, method name in the controller)]
 $routingTable = [

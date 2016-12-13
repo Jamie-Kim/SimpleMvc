@@ -26,7 +26,7 @@ class Accounts extends AppController
             $this->view->rendering(LOGIN_PAGE, $data);
         }
         
-        Logger::writeline('Debug', 'test');
+        AppLogger::writeline('Debug', 'test');
     }
 
     public function logout($param)
