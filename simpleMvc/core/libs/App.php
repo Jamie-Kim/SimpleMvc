@@ -1,9 +1,11 @@
 <?php
-/**
- * SimpleMvc
- * Version : 1.0.0.0
- * 
+/*
+ * This file is part of the SimpleMvc package.
+
  * @copyright 2016-2017 Jamie Kim
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace SimpleMvc;
 
@@ -34,7 +36,7 @@ class App
     private $args;
     
     /**
-     * Contructor : set global app settings.
+     * Constructor : set global app settings.
      */
     public function __construct($routingTable)
     {
@@ -98,7 +100,7 @@ class App
     }
     
     /**
-     * Get routing infomation from the routing tables.
+     * Get routing information from the routing tables.
      * 
      * @return array
      */
@@ -132,7 +134,7 @@ class App
     }
     
     /**
-     * Build routing infomation
+     * Build routing information
      *
      * @return bool
      */
@@ -172,8 +174,7 @@ class App
             if($this->settings->debug_mode) {
                 die($this->controllerFile . ' or ' . $this->controllerClassName . 
                     ':' . $this->method . ' is not found.');
-            }
-            
+            }          
         }
 
         return $ret;

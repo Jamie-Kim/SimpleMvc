@@ -18,7 +18,7 @@ class ApiMain extends AppApi
         ];
         
         //excute api and get result
-        $error = $this->apiResponse($apiTable, $param);
+        $this->apiResponse($apiTable, $param);
     }
 }
 

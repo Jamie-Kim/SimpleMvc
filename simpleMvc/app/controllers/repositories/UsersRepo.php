@@ -1,6 +1,4 @@
 <?php
-require HELPERS. DS . 'Helper.php';
-
 //
 // User's repository
 //
@@ -47,7 +45,7 @@ Class UsersRepo
     {
         $ret = false;
         
-        if(Helper::isPostRequest()) {
+        if(AppHelper::isPostRequest()) {
             //check the id and password
             if(!empty($param['id']) && !empty($param['password'])) {
                 $ret = true;

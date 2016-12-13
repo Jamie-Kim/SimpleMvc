@@ -10,3 +10,6 @@ define('CORE', ROOT . DS . 'core');
 
 // app path
 define('APP', ROOT . DS . 'app');
+
+// log path
+define('LOGS', ROOT . DS . 'logs');

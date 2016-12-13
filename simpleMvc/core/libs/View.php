@@ -1,8 +1,11 @@
 <?php
-/**
- * SimpleMvc
- *
+/*
+ * This file is part of the SimpleMvc package.
+
  * @copyright 2016-2017 Jamie Kim
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace SimpleMvc;
 
@@ -26,10 +29,6 @@ class View
         //defaul settings to show html
         $this->setDefault_eval($viewData);
 
-        if($this->settings->debug_mode) {
-            echo '<pre>' . var_export($viewData, true) . '</pre>';
-        }
-
         //set data.
         $eval_forms = $this->file_get_contents_with_eval($file, $viewData);
 
@@ -44,7 +43,13 @@ class View
             $eval_forms = $eval_header . $eval_forms . $eval_footer;
         }
         
+        //flush forms
         echo $eval_forms;
+        
+        //show debug info
+        if($this->settings->debug_mode) {
+            echo '<pre>' . var_export($viewData, true) . '</pre>';
+        }       
     }
     
     private function file_get_contents_with_eval($file, $viewData)

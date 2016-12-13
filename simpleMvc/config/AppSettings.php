@@ -11,8 +11,8 @@ class AppSettings extends CustomSettings
     /**
      * debug mode
      */
-    public $debug_mode = false;
-    
+    public $debug_mode = true;
+
     /**
      * base Url, slash is needed at the end of url
      */
@@ -49,4 +49,23 @@ class AppSettings extends CustomSettings
      * theme, path is app/views/default
      */
     public $theme = 'default';
+        
+    /**
+     * save logs by log type
+     * true : write log , 
+     * false : skip log.
+     * 
+     * e.g. Logger::writeLine('LogTypeDebug', 'message') in application.
+     */
+    public $logTypes = [
+        //custom log types
+        'Accounts' => true,
+        'Login' => true,
+        
+        //general log types
+        'Debug' => true,
+        'Info' => true,
+        'Warning' => true,
+        'Error' => true
+    ];    
 }

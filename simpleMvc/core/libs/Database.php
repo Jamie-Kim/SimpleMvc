@@ -1,8 +1,11 @@
 <?php
-/**
- * SimpleMvc
- *
+/*
+ * This file is part of the SimpleMvc package.
+
  * @copyright 2016-2017 Jamie Kim
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace SimpleMvc;
 

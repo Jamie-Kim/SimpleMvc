@@ -2,7 +2,7 @@
 //
 // pageExceptions controller
 //
-class pageExceptions extends AppController
+class PageExceptions extends AppController
 {
     //--------------------------------------------------------------------------------------------------------------------
     // Actions

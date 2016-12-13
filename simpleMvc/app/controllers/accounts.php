@@ -4,7 +4,7 @@ require REPOSITORIES. DS . 'UsersRepo.php';
 //
 // accounts controller
 //
-class accounts extends AppController
+class Accounts extends AppController
 {
     //-------------------------------------------------------------------------------------
     // Show web page
@@ -25,6 +25,8 @@ class accounts extends AppController
         else {
             $this->view->rendering(LOGIN_PAGE, $data);
         }
+        
+        Logger::writeline('Debug', 'test');
     }
 
     public function logout($param)

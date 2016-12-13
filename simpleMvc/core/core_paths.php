@@ -1,6 +1,7 @@
 <?php
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', dirname(__FILE__));
-
 //core
 define('CORE_LIBS', CORE . DS . 'libs');
+//helpers
+define('CORE_HELPERS', CORE . DS . 'helpers');
+//vendors
+define('CORE_VENDORS', CORE . DS . 'vendors');
