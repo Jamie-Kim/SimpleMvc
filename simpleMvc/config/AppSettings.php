@@ -55,7 +55,7 @@ class AppSettings extends CustomSettings
      * true : write log , 
      * false : skip log.
      * 
-     * e.g. Logger::writeLine('LogTypeDebug', 'message') in application.
+     * e.g. AppLogger::writeLine('Debug', 'message', $context) in application.
      */
     public $logTypes = [
         //custom log types
