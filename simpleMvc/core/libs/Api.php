@@ -77,8 +77,8 @@ class Api extends Controller
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
     
-    private function flushResponse($response) {
-    
+    private function flushResponse($response) 
+    {
         echo json_encode($response);
         exit();
     }
