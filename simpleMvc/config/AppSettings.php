@@ -55,9 +55,13 @@ class AppSettings extends CustomSettings
      * true : write log , 
      * false : skip log.
      * 
+<<<<<<< HEAD
      * The log file will be saved as 'app/temp/logs/[date].log' 
      * 
      * e.g. Logger::writeLine('LogTypeDebug', 'message') in application.
+=======
+     * e.g. AppLogger::writeLine('Debug', 'message', $context) in application.
+>>>>>>> f8505b73473950986bdc3d41da5faba1ed960847
      */
     public $logTypes = [
         //custom debug logs

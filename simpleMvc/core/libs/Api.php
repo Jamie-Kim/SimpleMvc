@@ -180,7 +180,12 @@ class Api extends Controller
        return $response;
     }
     
+<<<<<<< HEAD
     protected function flushResponse($response) {
+=======
+    private function flushResponse($response) 
+    {
+>>>>>>> f8505b73473950986bdc3d41da5faba1ed960847
         echo json_encode($response);
         exit();
     }
