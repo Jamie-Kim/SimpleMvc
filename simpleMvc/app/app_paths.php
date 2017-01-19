@@ -10,7 +10,7 @@ define('CONTROLLERS', APP . DS . 'controllers');
 define('TEMP', APP . DS . 'temp');
 
 //pathes in API
-define('RESOURCES', API . DS . 'resources');
+define('RESOURCES', API . DS . 'api_resources');
 
 //paths in TEMP
 define('LOGS', TEMP . DS . 'logs');
