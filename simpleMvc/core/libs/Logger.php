@@ -9,6 +9,9 @@
  */
 namespace SimpleMvc;
 
+/**
+ * Logger Class
+ */
 class Logger
 {    
     /**
@@ -86,13 +89,14 @@ class Logger
         //12:21:99 [fileName.php:line][Debug] : message
         //[context]  
         $time = date("H:i:s");
+        $remoteAddr = $_SERVER['REMOTE_ADDR'];
    
         //get caller filename and line
         $backtrace = debug_backtrace();
         $file = basename($backtrace[1]['file']) . ':' . $backtrace[1]['line'];
 
         //set format [time][type][filename:line] : message
-        $logFormat = sprintf("[%s][%s][%s] : %s\n",$time, $logType, $file, $message);
+        $logFormat = sprintf("[%s][%s][%s][%s] : %s\n",$time, $remoteAddr, $logType, $file, $message);
         
         //set context values
         if(count($context)) {

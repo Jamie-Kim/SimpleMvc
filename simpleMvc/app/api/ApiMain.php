@@ -1,55 +1,93 @@
 <?php
-//
-// accounts controller
-//
-class ApiMain extends AppApi
-{
+//api result text
+define('RT_TRUE', '1');
+define('RT_FALSE', '0');
+
+/**
+ * ApiMain class
+ * {API URL}/{resource}/{command}?{parameters}
+ * e.g https://ransomgaurd.net/app/api/users/get_is_user_registered?parameters
+ * response as JSON : ["data":{data},"status":{status},"message":{message}] 
+ */   
+final class ApiMain extends AppApi
+{    
     public function run($param)
-    {
-        //set routing [resouce => [method(POST,GET,PUT,PATCH,DELETE), callback)]
+    {        
+        //api routing table [resource => [command => [method(POST,GET,PUT,PATCH,DELETE), Resource Path, action)]]
         $apiTable = [
-            'users' => 
-                [
-                    'GET' => array(new apiUsers(), 'getUserInfo'),
-                    'POST' => array(new apiUsers(), 'createUserInfo'),
-                    'PUT' => array(new apiUsers(), 'updateUserInfo'),
-                    'DELETE' => array(new apiUsers(), 'delUserInfo'),
-                ]
+            'users' => [
+                'get_is_user_registered' => ['GET', RESOURCES . DS .'RgUserApiRes.php', 'isRegisteredUser'],
+                'set_user_registry' => ['POST', RESOURCES . DS .'RgUserApiRes.php', 'setUser']          
+                
+            ],
+            
+            'files' => [
+                'get_file_info' => ['GET', RESOURCES . DS .'RgFileApiRes.php', 'getFileInfo'],
+                'set_user_file_info' => ['POST', RESOURCES . DS .'RgFileApiRes.php', 'setUserFileInfo']
+            ],            
         ];
         
-        //excute api and get result
-        $this->apiResponse($apiTable, $param);
-    }
-}
+        //check validation, if not exit it.
+        //$this->checkValidation($param);
 
-class apiUsers extends AppApi
-{
-    public function getUserInfo($param, $item)
-    {
-        //set status
-        $response['user'] = 'Jamie Kim';
-        $response = $this->setStatus($response, 200);
-        return $response;
+        //excute api and get result
+        $this->cmdApiResponse($apiTable, $param);
     }
     
-    public function createUserInfo($param, $item)
+    //--------------------------------------------------------------------------------------------------------
+    // Validations
+    //--------------------------------------------------------------------------------------------------------
+    private function checkValidation($param) 
     {
-        $response['data'] = 'createUserInfo';
-        $response = $this->setStatus($response, 201);
-        return $response;
+        $response = array();
+        
+        if(!$this->ApiValidation($param)) {
+            $this->flushResponse($this->setStatus($response, 401, "Validation error"));  
+        }
     }
     
-    public function updateUserInfo($param, $item)
+    private function ApiValidation($param) 
     {
-        $response['data'] = 'updateUserInfo';
-        $response = $this->setStatus($response, 200);
-        return $response;
-    }
-    
-    public function delUserInfo($param, $item)
-    {
-        $response['data'] = 'delUserInfo';
-        $response = $this->setStatus($response, 405);
-        return $response;
-    }
+        //api keys
+        $apiKey = $this->settings->apiKey;
+        $signKey = $this->settings->signKey;
+  
+        //security key isn't set
+        if (empty($param['_ApiKey']) ||
+            empty($param['_Signature']) ||
+            empty($param['_Timestamp']) ) {
+            return false;
+        }
+        
+        //check api key
+        if ($param['_ApiKey'] != $apiKey) {
+            return false;
+        }
+
+        //allow delay for 60 sec only
+        date_default_timezone_set('UTC');
+        $ts = time() - strtotime($param['_Timestamp']);
+        if ($ts < -60 || $ts > 60) {
+            return false;
+        }
+
+        //set parameters
+        $args = array();
+        ksort($param);
+        foreach ($param as $k => $v) {
+            if ($k != '_Signature' && $k != 'PHPSESSID') {
+                array_push($args, $k . '=' . rawurlencode($v));
+            }
+        }
+
+        //check the signature
+        $msg = '?' . join('&', $args);
+        $sign = hash_hmac('sha1', $msg, $signKey);
+        if ($param['_Signature'] != $sign) {
+            return false;
+        }
+
+        //success
+        return true;
+    }        
 }

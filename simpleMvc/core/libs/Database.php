@@ -31,11 +31,14 @@ class Database
         try {
             //set debug mode
             $this->debug = $debug;
-            $this->pdo = new \PDO("mysql:host=$host;dbname=$databaseName", $userName, $password);
+            $this->pdo = new \PDO(
+                "mysql:host=$host;dbname=$databaseName",
+                $userName,
+                $password
+            );                    
 
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $this->pdo->exec('SET NAMES "utf8"');
-            
+            $this->pdo->exec('SET NAMES "utf8"');          
         } catch (\PDOException $e) {
 
             $this->pdo = null;
@@ -204,23 +207,24 @@ class Database
 
         $cols = array();
         $colVals = array();
-        
+
         foreach ($fields as $name => $val) {
             $cols[] = $name;
             $colVals[] = ($name == 'password') ? "password(:$name)" : ":$name";
         }
-        
+
         $query = "INSERT INTO $tableName (" . join(',', $cols) . ") VALUES (" . join(',', $colVals) . ")";
         $this->query($query);
 
         foreach ($fields as $name => $val) {
-            $this->bind(":" . $name, $val);
-            
-            if (self::$queryDebug)
+            $this->bind(":" . $name, $val);  
+            if ($this->debug) {
                 echo "<br/>$name: $val<br/>";
+            }
         }
-        
+
         $cnt = $this->execute();
+ 
         if ($countAsReturn == true)
             return $cnt;
             

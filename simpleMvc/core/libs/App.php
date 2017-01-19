@@ -189,4 +189,53 @@ final class App
         header("Location: $redirect_url");
         exit();
     }
+    
+    /**
+     * save logs for PHP errors if the PhpError is true.
+     * if it is debug mode, then we don't need to save the PHP error in the log file.
+     */
+    public function setPhpErrorMode($logFolder)
+    {
+        $debug = $this->settings->debug_mode;
+        $phpLog = $this->settings->logTypes['PhpError'];
+        
+        if($debug) {
+            $this->setPhpErrorDebugMode();
+        } else if($phpLog) {
+            $this->setPhpErrorLogMode($logFolder);            
+        } else {
+            //don't show any errors.
+        }                
+    }    
+    
+    /**
+     * PHP error log to file
+     */    
+    private function setPhpErrorLogMode($logFolder)
+    {
+        //check directory exist
+        if(!file_exists($logFolder)) {
+            return;
+        }
+
+        //get log fileName
+        $fileName = date("Y-m-d") . '.log';
+        $logPath = $logFolder . DS . $fileName;      
+
+        //set error options
+        ini_set('log_errors', 1);
+        ini_set('error_log', $logPath);
+        error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));                 
+    }
+    
+    /**
+     * PHP error log to display to browser
+     */    
+    private function setPhpErrorDebugMode()
+    {        
+        //set error options            
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));                      
+    }       
 }

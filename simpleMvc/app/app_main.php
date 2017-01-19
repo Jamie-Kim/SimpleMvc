@@ -38,4 +38,9 @@ $routingTable = [
 
 //Create AppStater to start web app
 $app = new SimpleMvc\App($routingTable);
+
+//Set PHP error mode for debug mode and file log which is set in AppSettings.
+$app->setPhpErrorMode(LOGS);
+
+//Run the application
 $app->run();

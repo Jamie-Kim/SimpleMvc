@@ -22,7 +22,7 @@ Class Helper
     }        
     
     //combine two paths
-    public static function combine($path1, $path2)
+    public static function pathCombine($path1, $path2)
     {
         $first = rtrim($path1, DIRECTORY_SEPARATOR);
         $second = ltrim($path2, DIRECTORY_SEPARATOR);

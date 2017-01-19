@@ -21,7 +21,7 @@ class View
         $this->settings = $settings;
     }
 
-    public function rendering($file, $viewData, $header=null, $footer = null)
+    public function rendering($file, $viewData, $header = null, $footer = null)
     {
         $eval_header = null;
         $eval_footer = null;

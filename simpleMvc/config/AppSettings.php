@@ -4,17 +4,17 @@
  * 
  * It is global settings usable in controller.
  * Please don't add new member variable since it can be related to the core sources and it can be updated.
- * Additional app settings should be in CustomSettings.
+ * Additional APP settings should be in CustomSettings.
  */
 class AppSettings extends CustomSettings
 {
     /**
      * debug mode
      */
-    public $debug_mode = true;
-
+    public $debug_mode = false;
+    
     /**
-     * base Url, slash is needed at the end of url
+     * base URL, slash is needed at the end of URL
      */
     public $base_url = 'http://centos7/simpleMvc/';
 
@@ -46,7 +46,7 @@ class AppSettings extends CustomSettings
     public $style_url_view_name = 'appViewUrl';
 
     /**
-     * theme, path is app/views/default
+     * default theme path is app/views/default
      */
     public $theme = 'default';
         
@@ -55,17 +55,24 @@ class AppSettings extends CustomSettings
      * true : write log , 
      * false : skip log.
      * 
+     * The log file will be saved as 'app/temp/logs/[date].log' 
+     * 
      * e.g. Logger::writeLine('LogTypeDebug', 'message') in application.
      */
     public $logTypes = [
-        //custom log types
-        'Accounts' => true,
-        'Login' => true,
+        //custom debug logs
+        'Api' => false,
+
+        //security logs
+        'Security' => true,        
         
         //general log types
         'Debug' => true,
         'Info' => true,
         'Warning' => true,
-        'Error' => true
+        'Error' => true,
+
+         //php error log option
+        'PhpError' => true
     ];    
 }
