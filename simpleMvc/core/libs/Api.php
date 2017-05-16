@@ -47,7 +47,10 @@ class Api extends Controller
         $this->settings->debug_mode = false;        
         
         //respoinse to send to user as Json data type
-        $response = array();    
+        $response = array();
+        
+        //set resource,command and http method
+        $this->setApiInfo($this->args);        
         
         //http request method
         $httpMethod = array_shift($apiTable[$this->resource][$this->command]);
@@ -107,7 +110,10 @@ class Api extends Controller
         $this->settings->debug_mode = false;
 
         //response to user as Json data type
-        $response = array();         
+        $response = array();
+                                
+        //set resource,command and http method
+        $this->setApiInfo($this->args);                
         
         if(empty($apiTable[$this->resource][$this->method])) {
             $this->flushResponse($this->setStatus($response, 404, 'Resource not found'));
@@ -174,8 +180,7 @@ class Api extends Controller
        return $response;
     }
     
-    private function flushResponse($response) 
-    {
+    protected function flushResponse($response) {
         echo json_encode($response);
         exit();
     }
